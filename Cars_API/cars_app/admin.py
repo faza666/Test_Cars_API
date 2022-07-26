@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Cars, Model, Brand
 
-# Register your models here.
+admin.site.register(Cars)
+admin.site.register(Brand)
+admin.site.register(Model)
