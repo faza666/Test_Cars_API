@@ -2,8 +2,8 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('user/create', ),  # POST create new user
-    path('user/login', ),   # POST login user
+    # path('user/create', ),  # POST create new user
+    # path('user/login', ),   # POST login user
 
     path('cars/', OnSaleCarsAPIView.as_view()),     # GET list of all Car Objects that are on sale
     path('cars/all/', AllCarsAPIView.as_view()),    # GET list of all Car Objects
