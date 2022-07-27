@@ -53,7 +53,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         count = options['count'][0]
-        for i in range(count+1):
+        for i in range(count):
 
             self.post_brand()
             self.post_model()
