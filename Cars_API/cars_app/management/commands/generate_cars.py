@@ -49,7 +49,7 @@ class Command(BaseCommand):
             'engine_volume': random.randint(14, 55) / 10,
             'is_on_sale': random.randint(0, 1),
         }
-        Cars.objects.create(**car)
+        Car.objects.create(**car)
 
     def handle(self, *args, **options):
         count = options['count'][0]

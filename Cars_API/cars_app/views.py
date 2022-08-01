@@ -4,13 +4,13 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class OnSaleCarsAPIView(generics.ListAPIView):
-    queryset = Cars.objects.filter(is_on_sale=True)
+    queryset = Car.objects.filter(is_on_sale=True)
     serializer_class = CarsSerializer
     permission_classes = (IsAuthenticated, )
 
 
 class AllCarsAPIView(generics.ListAPIView):
-    queryset = Cars.objects.all()
+    queryset = Car.objects.all()
     serializer_class = CarsSerializer
     permission_classes = (IsAuthenticated, )
 

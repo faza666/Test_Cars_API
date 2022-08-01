@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Cars(models.Model):
+class Car(models.Model):
     brand_name = models.ForeignKey('Brand', on_delete=models.PROTECT)
     model_name = models.ForeignKey('Model', on_delete=models.PROTECT)
     price = models.IntegerField()
