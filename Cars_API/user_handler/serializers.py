@@ -29,11 +29,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
                 # check for password match
                 if user.check_password(password):
-                    print('Password matches')
-
                     # set 'username' attr from user object
                     attrs['username'] = user.username
-                    print(attrs)
 
             except User.DoesNotExist:
                 raise exceptions.AuthenticationFailed(
