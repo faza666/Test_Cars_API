@@ -1,4 +1,6 @@
-from rest_framework import serializers
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from rest_framework import serializers, exceptions
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
@@ -6,13 +8,39 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
 
-        # Add custom claims
-        token['username'] = user.username
-        return token
+    @staticmethod
+    def _validate_email(email):
+        try:
+            validate_email(email)
+            return True
+        except ValidationError:
+            return False
+
+    def validate(self, attrs):
+        userName = attrs.get("username")
+        password = attrs.get("password")
+
+        # if email was given instead of username:
+        if self._validate_email(userName):
+            try:
+                # try to get user object from db by its email
+                user = User.objects.get(email=userName)
+
+                # check for password match
+                if user.check_password(password):
+                    print('Password matches')
+
+                    # set 'username' attr from user object
+                    attrs['username'] = user.username
+                    print(attrs)
+
+            except User.DoesNotExist:
+                raise exceptions.AuthenticationFailed(
+                    'No such user with provided credentials'.title())
+
+        data = super().validate(attrs)
+        return data
 
 
 class RegisterSerializer(serializers.ModelSerializer):
