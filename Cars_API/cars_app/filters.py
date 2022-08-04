@@ -3,12 +3,10 @@ from cars_app.models import Car, Model, Brand
 
 
 class CarFilter(filters.FilterSet):
+    brand_name = filters.CharFilter(field_name='brand_name__name', lookup_expr='icontains')
+    model_name = filters.CharFilter(field_name='model_name__name', lookup_expr='icontains')
     price = filters.RangeFilter()
     mileage = filters.RangeFilter()
-    exterior_color = filters.CharFilter()
-    interior_color = filters.CharFilter()
-    fuel_type = filters.CharFilter()
-    transmission_type = filters.CharFilter()
     engine_volume = filters.RangeFilter()
     is_on_sale = filters.BooleanFilter()
 
@@ -18,9 +16,8 @@ class CarFilter(filters.FilterSet):
 
 
 class ModelFilter(filters.FilterSet):
-    name = filters.CharFilter()
-    year_of_issue = filters.RangeFilter()
-    body_style = filters.CharFilter()
+    name = filters.CharFilter(lookup_expr='icontains')
+    body_style = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Model
@@ -28,8 +25,8 @@ class ModelFilter(filters.FilterSet):
 
 
 class BrandFilter(filters.FilterSet):
-    name = filters.CharFilter()
-    headquarters_country = filters.CharFilter()
+    name = filters.CharFilter(lookup_expr='icontains')
+    headquarters_country = filters.CharFilter(lookup_expr='icontains')
 
     class Meta:
         model = Brand
