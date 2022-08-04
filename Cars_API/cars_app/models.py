@@ -17,6 +17,10 @@ class Car(models.Model):
     def __str__(self):
         return f'{self.brand_name} {self.model_name}'
 
+    class Meta:
+        verbose_name = 'Car'
+        verbose_name_plural = 'Cars'
+
 
 class Brand(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -24,6 +28,10 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Brand'
+        verbose_name_plural = 'Brands'
 
 
 class Model(models.Model):
@@ -33,3 +41,7 @@ class Model(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Model'
+        verbose_name_plural = 'Models'
