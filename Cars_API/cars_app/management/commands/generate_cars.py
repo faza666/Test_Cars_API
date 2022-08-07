@@ -13,20 +13,20 @@ class Command(BaseCommand):
     def post_brand():
 
         brand_list = [
-            ['Mercedes-Benz', 'Germany'],
-            ['BMW', 'Germany'],
-            ['Volvo', 'Sweden'],
-            ['Audi', 'Sweden'],
-            ['Porsche', 'Germany'],
-            ['Lexus', 'Japan'],
-            ['Lamborghini', 'Italy'],
-            ['Ferrari', 'Italy'],
-            ['Land Rover', 'United Kingdom'],
-            ['Cadillac', 'United States'],
-            ['Jaguar', 'United Kingdom'],
-            ['Rolls-Royce', 'United Kingdom'],
-            ['Bugatti', 'France'],
-            ['Aston Martin', 'United Kingdom'],
+            ["Mercedes-Benz", "Germany"],
+            ["BMW", "Germany"],
+            ["Volvo", "Sweden"],
+            ["Audi", "Sweden"],
+            ["Porsche", "Germany"],
+            ["Lexus", "Japan"],
+            ["Lamborghini", "Italy"],
+            ["Ferrari", "Italy"],
+            ["Land Rover", "United Kingdom"],
+            ["Cadillac", "United States"],
+            ["Jaguar", "United Kingdom"],
+            ["Rolls-Royce", "United Kingdom"],
+            ["Bugatti", "France"],
+            ["Aston Martin", "United Kingdom"],
         ]
 
         for each_item in brand_list:
