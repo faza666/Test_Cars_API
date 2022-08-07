@@ -1,5 +1,4 @@
 from django.core.management.base import BaseCommand, CommandError
-
 from cars_app.models import *
 import random
 
@@ -12,12 +11,28 @@ class Command(BaseCommand):
 
     @staticmethod
     def post_brand(_number):
-        brand_name = ["Audi", "BMW", "Mercedes", "Skoda", "Ford", "Lexus"]
-        brand_headquarters = ["Germany", "Poland", "USA", "Japan", "South Korea"]
-        for _ in range(_number):
+
+        brand_list = [
+            ['Mercedes-Benz', 'Germany'],
+            ['BMW', 'Germany'],
+            ['Volvo', 'Sweden'],
+            ['Audi', 'Sweden'],
+            ['Porsche', 'Germany'],
+            ['Lexus', 'Japan'],
+            ['Lamborghini', 'Italy'],
+            ['Ferrari', 'Italy'],
+            ['Land Rover', 'United Kingdom'],
+            ['Cadillac', 'United States'],
+            ['Jaguar', 'United Kingdom'],
+            ['Rolls-Royce', 'United Kingdom'],
+            ['Bugatti', 'France'],
+            ['Aston Martin', 'United Kingdom'],
+        ]
+
+        for each_item in brand_list:
             brand = {
-                "name": random.choice(brand_name),
-                "headquarters_country": random.choice(brand_headquarters),
+                "name": each_item[0],
+                "headquarters_country": each_item[1],
             }
             Brand.objects.create(**brand)
 
@@ -43,10 +58,7 @@ class Command(BaseCommand):
             Model.objects.create(**model)
 
     @staticmethod
-    def post_car():
-
-        brand_list = list(Brand.objects.all())
-        model_list = list(Model.objects.all())
+    def post_car(brand_list, model_list):
 
         colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"]
         fuel_types = ["gas", "diesel"]
@@ -71,8 +83,11 @@ class Command(BaseCommand):
         self.post_brand(brands_number)
         self.post_model(models_number)
 
+        brand_list = list(Brand.objects.all())
+        model_list = list(Model.objects.all())
+
         count = options["count"][0]
         for _ in range(count):
-            self.post_car()
+            self.post_car(brand_list=brand_list, model_list=model_list)
 
         self.stdout.write(f"{count} of objects have been created")
