@@ -10,7 +10,7 @@ class Command(BaseCommand):
         parser.add_argument("count", nargs="+", type=int)
 
     @staticmethod
-    def post_brand(_number):
+    def post_brand():
 
         brand_list = [
             ['Mercedes-Benz', 'Germany'],
@@ -79,8 +79,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        brands_number = models_number = 10
-        self.post_brand(brands_number)
+        models_number = 20
+        self.post_brand()
         self.post_model(models_number)
 
         brand_list = list(Brand.objects.all())
