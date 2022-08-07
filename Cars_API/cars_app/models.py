@@ -3,8 +3,8 @@ from django.db import models
 
 # Create your models here.
 class Car(models.Model):
-    brand_name = models.ForeignKey('Brand', on_delete=models.PROTECT)
-    model_name = models.ForeignKey('Model', on_delete=models.PROTECT)
+    brand_name = models.ForeignKey("Brand", on_delete=models.PROTECT)
+    model_name = models.ForeignKey("Model", on_delete=models.PROTECT)
     price = models.IntegerField()
     mileage = models.IntegerField()
     exterior_color = models.CharField(max_length=255)
@@ -15,11 +15,11 @@ class Car(models.Model):
     is_on_sale = models.BooleanField()
 
     def __str__(self):
-        return f'{self.brand_name} {self.model_name}'
+        return f"{self.brand_name} {self.model_name}"
 
     class Meta:
-        verbose_name = 'Car'
-        verbose_name_plural = 'Cars'
+        verbose_name = "Car"
+        verbose_name_plural = "Cars"
 
 
 class Brand(models.Model):
@@ -30,8 +30,8 @@ class Brand(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Brand'
-        verbose_name_plural = 'Brands'
+        verbose_name = "Brand"
+        verbose_name_plural = "Brands"
 
 
 class Model(models.Model):
@@ -43,5 +43,5 @@ class Model(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Model'
-        verbose_name_plural = 'Models'
+        verbose_name = "Model"
+        verbose_name_plural = "Models"

@@ -8,41 +8,74 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Brand',
+            name="Brand",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(db_index=True, max_length=255)),
-                ('headquarters_country', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(db_index=True, max_length=255)),
+                ("headquarters_country", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Model',
+            name="Model",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(db_index=True, max_length=255)),
-                ('year_of_issue', models.CharField(max_length=4)),
-                ('body_style', models.CharField(max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(db_index=True, max_length=255)),
+                ("year_of_issue", models.CharField(max_length=4)),
+                ("body_style", models.CharField(max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Car',
+            name="Car",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('price', models.IntegerField()),
-                ('mileage', models.IntegerField()),
-                ('exterior_color', models.CharField(max_length=255)),
-                ('interior_color', models.CharField(max_length=255)),
-                ('fuel_type', models.CharField(max_length=50)),
-                ('transmission_type', models.CharField(max_length=50)),
-                ('engine_volume', models.FloatField()),
-                ('is_on_sale', models.BooleanField()),
-                ('brand_name', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='cars_app.brand')),
-                ('model_name', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='cars_app.model')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("price", models.IntegerField()),
+                ("mileage", models.IntegerField()),
+                ("exterior_color", models.CharField(max_length=255)),
+                ("interior_color", models.CharField(max_length=255)),
+                ("fuel_type", models.CharField(max_length=50)),
+                ("transmission_type", models.CharField(max_length=50)),
+                ("engine_volume", models.FloatField()),
+                ("is_on_sale", models.BooleanField()),
+                (
+                    "brand_name",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="cars_app.brand"
+                    ),
+                ),
+                (
+                    "model_name",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT, to="cars_app.model"
+                    ),
+                ),
             ],
         ),
     ]

@@ -8,7 +8,6 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-
     @staticmethod
     def _validate_email(email):
         try:
@@ -30,11 +29,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
                 # check for password match
                 if user.check_password(password):
                     # set 'username' attr from user object
-                    attrs['username'] = user.username
+                    attrs["username"] = user.username
 
             except User.DoesNotExist:
                 raise exceptions.AuthenticationFailed(
-                    'No such user with provided credentials'.title())
+                    "No such user with provided credentials".title()
+                )
 
         data = super().validate(attrs)
         return data
@@ -44,33 +44,35 @@ class RegisterSerializer(serializers.ModelSerializer):
     username = serializers.CharField(
         max_length=255,
         required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        validators=[UniqueValidator(queryset=User.objects.all())],
     )
 
     email = serializers.EmailField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        required=True, validators=[UniqueValidator(queryset=User.objects.all())]
     )
 
-    password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
+    password = serializers.CharField(
+        write_only=True, required=True, validators=[validate_password]
+    )
     confirm_password = serializers.CharField(write_only=True, required=True)
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'confirm_password', 'email')
+        fields = ("username", "password", "confirm_password", "email")
 
     def validate(self, attrs):
-        if attrs['password'] != attrs['confirm_password']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
+        if attrs["password"] != attrs["confirm_password"]:
+            raise serializers.ValidationError(
+                {"password": "Password fields didn't match."}
+            )
         return attrs
 
     def create(self, validated_data):
         user = User.objects.create(
-            username=validated_data['username'],
-            email=validated_data['email']
+            username=validated_data["username"], email=validated_data["email"]
         )
 
-        user.set_password(validated_data['password'])
+        user.set_password(validated_data["password"])
         user.save()
 
         return user

@@ -8,9 +8,9 @@ from .serializers import RegisterSerializer, MyTokenObtainPairSerializer
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
