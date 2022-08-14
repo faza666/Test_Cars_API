@@ -12,9 +12,13 @@ class TestRefreshTokenAPI(APITestCase):
             "password": "Pa$$word!@",
             "confirm_password": "Pa$$word!@",
         }
-        create_response = self.client.post(reverse("create"), self.user_data, format="json")
+        create_response = self.client.post(
+            reverse("create"), self.user_data, format="json"
+        )
         self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(create_response.data["username"], self.user_data.get("username"))
+        self.assertEqual(
+            create_response.data["username"], self.user_data.get("username")
+        )
         self.assertEqual(create_response.data["email"], self.user_data.get("email"))
 
         login_data = {
